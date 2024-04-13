@@ -1,10 +1,12 @@
-package com.hyoretsu.synchro.onboarding.modules.account.models;
+package com.hyoretsu.synchro.onboarding.modules.accounts.models;
 
 import java.util.Date;
 import java.util.UUID;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+
+import com.hyoretsu.synchro.onboarding.modules.accounts.dtos.CreateAccountDTO;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -21,6 +23,11 @@ import lombok.Getter;
 })
 @Getter
 public class Account {
+	public Account(CreateAccountDTO data) {
+		this.company = data.company;
+		this.type = data.type;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.UUID)
 	private UUID id;

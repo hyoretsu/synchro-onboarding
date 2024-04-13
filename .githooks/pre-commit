@@ -1,0 +1,4 @@
+#!/bin/sh
+
+git pull
+cd frontend && bunx lint-staged

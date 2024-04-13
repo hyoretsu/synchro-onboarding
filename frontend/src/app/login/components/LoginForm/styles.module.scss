@@ -1,0 +1,28 @@
+.form {
+}
+
+.field {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+
+	width: 12rem;
+	padding: 0.5rem 0.75rem;
+	cursor: text;
+
+	border: 1px solid #333;
+	border-radius: 50vw;
+
+	label {
+		top: calc(50% - 1rem * 1.2 / 2);
+
+		color: #777;
+		background-color: transparent;
+		font-size: 1rem;
+		transition: ease-in-out 0.4s;
+	}
+
+	+ div {
+		margin-top: 1rem;
+	}
+}

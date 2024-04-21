@@ -1,0 +1,1 @@
+Huge shoutout to my man [Rana](https://www.linkedin.com/in/arifng) for unraveling the maze that is using Querydsl alongside Spring Boot, otherwise known as [arifng/spring-jpa-querydsl](https://github.com/arifng/spring-jpa-querydsl).

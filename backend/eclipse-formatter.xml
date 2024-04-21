@@ -611,7 +611,7 @@
 			value="false" />
 		<setting id="org.eclipse.jdt.core.formatter.keep_imple_if_on_one_line" value="false" />
 		<setting id="org.eclipse.jdt.core.formatter.keep_then_statement_on_same_line" value="false" />
-		<setting id="org.eclipse.jdt.core.formatter.lineSplit" value="120" />
+		<setting id="org.eclipse.jdt.core.formatter.lineSplit" value="80" />
 		<setting id="org.eclipse.jdt.core.formatter.never_indent_block_comments_on_first_column"
 			value="false" />
 		<setting id="org.eclipse.jdt.core.formatter.never_indent_line_comments_on_first_column"

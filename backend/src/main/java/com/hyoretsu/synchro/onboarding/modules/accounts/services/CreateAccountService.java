@@ -1,6 +1,6 @@
 package com.hyoretsu.synchro.onboarding.modules.accounts.services;
 
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -12,12 +12,8 @@ import com.hyoretsu.synchro.onboarding.modules.accounts.repositories.AccountsRep
 
 @Service
 public class CreateAccountService {
-	private final AccountsRepository accountsRepository;
-
-	public CreateAccountService(
-			@Qualifier("AccountsRepository") AccountsRepository accountsRepository) {
-		this.accountsRepository = accountsRepository;
-	}
+	@Autowired
+	private AccountsRepository accountsRepository;
 
 	public Account execute(CreateAccountDTO data) {
 		Account existingAccount = this.accountsRepository.find(new FindAccountDTO(data));
@@ -25,7 +21,7 @@ public class CreateAccountService {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Essa conta já existe.");
 		}
 
-		Account account = this.accountsRepository.create(data);
+		Account account = new Account(data);
 
 		return account;
 	}

@@ -15,6 +15,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Index;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 @Entity
@@ -22,6 +25,7 @@ import lombok.Getter;
 		@Index(columnList = "company, type", unique = true)
 })
 @Getter
+@EqualsAndHashCode
 public class Account {
 	public Account(CreateAccountDTO data) {
 		this.company = data.company;
@@ -39,10 +43,12 @@ public class Account {
 	private String type;
 
 	@CreatedDate
+	@Temporal(TemporalType.DATE)
 	@Column(nullable = false, updatable = false)
 	private Date createdAt;
 
 	@LastModifiedDate
+	@Temporal(TemporalType.DATE)
 	@Column(nullable = false, updatable = false)
 	private Date updatedAt;
 }

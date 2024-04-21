@@ -22,6 +22,7 @@ public class CreateAccountService {
 		}
 
 		Account account = new Account(data);
+		this.accountsRepository.save(account);
 
 		return account;
 	}

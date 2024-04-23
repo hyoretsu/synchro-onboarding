@@ -12,6 +12,8 @@
 		"**/*.(js|jsx|json|jsonc|ts|tsx)": ["biome check --apply"]
 	},
 	"dependencies": {
+		"@hyoretsu/react-components": "^1.7.9",
+		"@tanstack/react-query": "^5.29.2",
 		"next": "^14.2.1",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",

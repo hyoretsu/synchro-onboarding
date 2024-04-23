@@ -6,16 +6,6 @@ module.exports = async (phase, { defaultConfig }) => {
 		eslint: {
 			ignoreDuringBuilds: true,
 		},
-		experimental: {
-			turbo: {
-				rules: {
-					"*.svg": {
-						loaders: ["@svgr/webpack"],
-						as: "*.js",
-					},
-				},
-			},
-		},
 		productionBrowserSourceMaps: true,
 		reactStrictMode: true,
 		sassOptions: {

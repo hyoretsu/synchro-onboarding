@@ -1,6 +1,5 @@
 import type { PropsWithChildren } from "react";
 import "./_global.scss";
-import WebVitals from "./components/WebVitals";
 
 const siteColor = "#4F53B7";
 const siteName = "Zaimu (Synchro Onboarding)";

@@ -1,23 +1,22 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
-import styles from "../styles.module.scss";
-import Input from "./Input";
+import { useRef, useState } from "react";
+import FormInput from "./Input";
+import styles from "./styles.module.scss";
 
 export interface FormFieldProps {
 	/** Label of the field. */
 	label: string;
+	/** `name` prop of the input element. */
+	name: "username" | "password";
 }
 
-export default function FormField({ label }: FormFieldProps) {
+/** Bug ao trocar de campo com Tab */
+export default function FormField({ label, name }: FormFieldProps) {
 	const [active, setActive] = useState(false);
 	const [value, setValue] = useState("");
 	const inputRef = useRef<HTMLInputElement>(null);
 
 	const className = `${label}-field`;
-
-	useEffect(() => {
-		setActive(old => old || !!value);
-	}, [value]);
 
 	function handleClick() {
 		function onMouseUpHandler(e: MouseEvent) {
@@ -29,23 +28,21 @@ export default function FormField({ label }: FormFieldProps) {
 		}
 
 		if (!active) {
-			setActive(true);
 			window.addEventListener("mouseup", onMouseUpHandler);
 		}
+		setActive(true);
+		inputRef.current?.focus();
 	}
 
 	return (
-		<div
-			className={`${className} ${styles.field}`}
-			onFocus={() => console.log("asaaaaaa")}
-			onClick={handleClick}
-		>
+		<div className={`${className} ${styles.field}`} onClick={handleClick}>
 			<label
+				className={className}
+				htmlFor={name}
+				onClick={handleClick}
 				style={
-					active
+					active || value
 						? {
-								backgroundColor: "#fff",
-								position: "absolute",
 								fontSize: "0.9rem",
 								top: "-0.5rem",
 							}
@@ -54,13 +51,15 @@ export default function FormField({ label }: FormFieldProps) {
 			>
 				{label}
 			</label>
-			<Input
-				ref={inputRef}
-				onBlur={() => setActive(value ? true : false)}
+
+			<FormInput
+				className={className}
+				inputRef={inputRef}
+				name={name}
+				onBlur={() => setActive(false)}
+				onFocus={() => setActive(true)}
 				state={[value, setValue]}
-				style={{
-					display: !active ? "none" : "block",
-				}}
+				style={active || value ? { zIndex: 5 } : { zIndex: -1 }}
 			/>
 		</div>
 	);

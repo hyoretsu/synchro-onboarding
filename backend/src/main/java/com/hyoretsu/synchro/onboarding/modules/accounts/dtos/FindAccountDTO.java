@@ -6,6 +6,11 @@ public class FindAccountDTO {
 		this.type = data.type;
 	}
 
+	public FindAccountDTO(UpdateAccountDTO data) {
+		this.company = data.company;
+		this.type = data.type;
+	}
+
 	public String company;
 	public String type;
 }

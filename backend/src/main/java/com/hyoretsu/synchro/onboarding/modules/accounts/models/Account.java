@@ -7,6 +7,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import com.hyoretsu.synchro.onboarding.modules.accounts.dtos.CreateAccountDTO;
+import com.hyoretsu.synchro.onboarding.modules.accounts.dtos.UpdateAccountDTO;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -30,6 +31,15 @@ public class Account {
 	public Account(CreateAccountDTO data) {
 		this.company = data.company;
 		this.type = data.type;
+	}
+
+	public void update(UpdateAccountDTO data) {
+		if (data.company != null) {
+			this.company = data.company;
+		}
+		if (data.type != null) {
+			this.type = data.type;
+		}
 	}
 
 	@Id

@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -40,20 +41,30 @@ public class AccountsService {
 		this.accountsRepository.deleteById(accountId);
 	}
 
-	public Iterable<Account> listAccounts() {
-		Iterable<Account> accounts = this.accountsRepository.findAll();
+	public Iterable<Account> listAccounts(@Nullable FindAccountDTO data) {
+		Iterable<Account> accounts;
+
+		if (data != null) {
+			accounts = this.accountsRepository.search(data);
+		} else {
+			accounts = this.accountsRepository.findAll();
+		}
 
 		return accounts;
 	}
 
 	public void updateAccount(UpdateAccountDTO data) {
-		Account existingAccount = this.accountsRepository.find(new FindAccountDTO(data));
-		if (existingAccount == null) {
+		Optional<Account> existingAccount = this.accountsRepository.findById(data.id);
+		System.out.println(data.company);
+		System.out.println(data.type);
+		System.out.println(data.id);
+		if (existingAccount.isEmpty()) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Essa conta não existe.");
 		}
 
-		existingAccount.update(data);
+		Account updatedAccount = existingAccount.get();
+		updatedAccount.update(data);
 
-		this.accountsRepository.save(existingAccount);
+		this.accountsRepository.save(updatedAccount);
 	}
 }

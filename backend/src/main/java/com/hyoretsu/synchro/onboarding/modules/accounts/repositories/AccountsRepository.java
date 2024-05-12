@@ -15,4 +15,8 @@ public interface AccountsRepository extends CrudRepository<Account, UUID> {
 	@Query("SELECT a FROM Account a WHERE a.company = :#{#data.company} AND a.type = :#{#data.type}")
 	@Nullable
 	public Account find(FindAccountDTO data);
+
+	@Query("SELECT a FROM Account a WHERE a.company ILIKE %:#{#data.company}% OR a.type ILIKE %:#{#data.type}%")
+	@Nullable
+	public Iterable<Account> search(FindAccountDTO data);
 }

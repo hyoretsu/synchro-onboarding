@@ -1,17 +1,35 @@
+.main {
+	display: flex;
+	flex-direction: column;
+	margin: 0 25vw;
+
+	> button {
+		align-self: flex-end;
+		margin-right: 0.25rem;
+		margin-top: 0.25rem;
+	}
+
+	> section {
+		display: grid;
+		grid-template-columns: repeat(5, 1fr);
+		gap: 1rem;
+	}
+}
+
 .notFound {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
 
-    svg {
-        color: #f00;
-        width: auto;
-        height: 20%;
-    }
+	svg {
+		color: #f00;
+		width: auto;
+		height: 20%;
+	}
 
-    span {
-        font-size: 2em;
-    }
+	span {
+		font-size: 2em;
+	}
 }

@@ -3,8 +3,8 @@ package com.hyoretsu.synchro.onboarding.modules.accounts.models;
 import java.util.Date;
 import java.util.UUID;
 
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import com.hyoretsu.synchro.onboarding.modules.accounts.dtos.CreateAccountDTO;
 import com.hyoretsu.synchro.onboarding.modules.accounts.dtos.UpdateAccountDTO;
@@ -28,6 +28,10 @@ import lombok.Getter;
 @Getter
 @EqualsAndHashCode
 public class Account {
+	// O meu AccountsRepository.find() com @Nullable precisa disso aparentemente
+	public Account() {
+	}
+
 	public Account(CreateAccountDTO data) {
 		this.company = data.company;
 		this.type = data.type;
@@ -52,13 +56,13 @@ public class Account {
 	@Column(length = 30, nullable = false)
 	private String type;
 
-	@CreatedDate
-	@Temporal(TemporalType.DATE)
+	@CreationTimestamp
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(nullable = false, updatable = false)
 	private Date createdAt;
 
-	@LastModifiedDate
-	@Temporal(TemporalType.DATE)
+	@UpdateTimestamp
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(nullable = false, updatable = false)
 	private Date updatedAt;
 }

@@ -1,4 +1,4 @@
-.field {
+.formField {
 	display: flex;
 	flex-direction: column;
 	position: relative;
@@ -18,9 +18,5 @@
 		background-color: #fff;
 		font-size: 1rem;
 		transition: ease-in-out 0.4s;
-	}
-
-	+ div {
-		margin-top: 1rem;
 	}
 }

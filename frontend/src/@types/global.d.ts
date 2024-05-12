@@ -10,6 +10,12 @@ interface PlausibleOpts {
 	revenue?: never;
 }
 
+interface WithSearchParams<Params, Props = Record<string, any>> extends Props {
+	searchParams?: {
+		[key in Params]?: string;
+	};
+}
+
 interface Window {
 	gtag: (...args: any) => void;
 	plausible: (eventName: string, opts?: PlausibleOpts) => void;

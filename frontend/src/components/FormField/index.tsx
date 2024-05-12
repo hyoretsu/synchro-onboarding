@@ -1,13 +1,13 @@
 "use client";
 import { useRef, useState } from "react";
-import FormInput from "./Input";
+import FormInput from "../FormInput";
 import styles from "./styles.module.scss";
 
 export interface FormFieldProps {
 	/** Label of the field. */
 	label: string;
 	/** `name` prop of the input element. */
-	name: "username" | "password";
+	name: string;
 }
 
 /** Bug ao trocar de campo com Tab */
@@ -35,7 +35,7 @@ export default function FormField({ label, name }: FormFieldProps) {
 	}
 
 	return (
-		<div className={`${className} ${styles.field}`} onClick={handleClick}>
+		<fieldset className={`${className} ${styles.formField}`} onClick={handleClick}>
 			<label
 				className={className}
 				htmlFor={name}
@@ -61,6 +61,6 @@ export default function FormField({ label, name }: FormFieldProps) {
 				state={[value, setValue]}
 				style={active || value ? { zIndex: 5 } : { zIndex: -1 }}
 			/>
-		</div>
+		</fieldset>
 	);
 }
